@@ -22,7 +22,6 @@ export class AuthService {
 
     try {
       user = await this.userModel.findOne({ email });
-      // console.log('This is ', user.password);
 
       if (user) {
         throw new UnauthorizedException('User already registered');
