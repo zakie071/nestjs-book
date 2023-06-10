@@ -36,7 +36,7 @@ export class AuthService {
       throw error;
     }
 
-    const token = await this.jwtService.sign({ id: user._id });
+    const token = this.jwtService.sign({ id: user._id });
     return { token };
   }
 
@@ -55,7 +55,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const token = await this.jwtService.sign({ id: user._id });
+    const token = this.jwtService.sign({ id: user._id });
     return { token };
   }
 }
