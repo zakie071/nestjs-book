@@ -54,6 +54,7 @@ export class AuthService {
     if (!isPasswordMatch) {
       throw new UnauthorizedException('Invalid email or password');
     }
+    
 
     const token = this.jwtService.sign({ id: user._id });
     return { token };

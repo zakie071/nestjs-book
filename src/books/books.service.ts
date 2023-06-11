@@ -9,6 +9,7 @@ import mongoose, { Model } from 'mongoose';
 import { createBookDto } from './book-Dto/create-book.dto';
 import { updateBookDto } from './book-Dto/update-book.dto';
 import { Query } from 'express-serve-static-core';
+import { User } from 'src/auth/schemas/user.schema';
 
 @Injectable()
 export class BooksService {
@@ -39,8 +40,10 @@ export class BooksService {
       .skip(skip);
   }
 
-  async createBook(book: createBookDto): Promise<Book> {
-    return await this.bookModel.create(book);
+  async createBook(book: createBookDto, user: User): Promise<Book> {
+    const data = Object.assign(book, { user: user._id });
+
+    return await this.bookModel.create(data);
   }
 
   async getAbook(id: string): Promise<Book> {
