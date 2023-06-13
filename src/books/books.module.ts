@@ -14,3 +14,4 @@ import { AuthModule } from 'src/auth/auth.module';
   providers: [BooksService],
 })
 export class BooksModule {}
+

@@ -28,10 +28,8 @@ export class BooksController {
 
   @Post()
   @UseGuards(AuthGuard())
-  async createBook(@Body() book: createBookDto, @Req() req ):Promise<Book> {
-    
-    
-    return await this.bookService.createBook(book,req.user);
+  async createBook(@Body() book: createBookDto, @Req() req): Promise<Book> {
+    return await this.bookService.createBook(book, req.user);
   }
 
   @Get(':id')
@@ -48,7 +46,10 @@ export class BooksController {
   }
 
   @Delete(':id')
-  async deleteBook(@Param('id') bookId: string): Promise<Book[]> {
+  async deleteBook(
+    @Param('id') bookId: string,
+    //  @Query() query: ExpressQuery
+  ): Promise<Book[]> {
     return await this.bookService.deleteBook(bookId);
   }
 }

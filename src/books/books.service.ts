@@ -70,6 +70,7 @@ export class BooksService {
       new: true,
       runValidators: true,
     });
+    
     try {
       if (!foundBook) {
         throw new NotFoundException('Book is not found!');
@@ -83,7 +84,7 @@ export class BooksService {
   async deleteBook(id: string): Promise<Book[]> {
     let foundBook;
     try {
-      const deletedBook = await this.bookModel.findByIdAndDelete(id);
+      foundBook = await this.bookModel.findByIdAndDelete(id);
       if (!foundBook) {
         throw new NotFoundException('Book is not found!');
       }
@@ -92,5 +93,6 @@ export class BooksService {
     }
 
     return this.bookModel.find();
+    // return this.getAllBooks()
   }
 }
